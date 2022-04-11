@@ -3,10 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { IndexMenager } from "./IndexMenager/IndexMenager"
+import { RegisterMenager } from './RegisterMenager/RegisterMenager';
+import { WriterMenager } from './WriterMenager/WriterMenager';
+
+
+const CurrentPage = ()=>{
+
+  return(
+    <IndexMenager/>
+  )
+
+}
+
 
 
 ReactDOM.render(
-  <IndexMenager/>,
+  <CurrentPage/>,
   document.getElementById('root')
 );
 

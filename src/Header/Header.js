@@ -2,7 +2,12 @@
 export const Header = (props) => {
     return(
         <div id="header">
-            header
+            <div id="logo">
+                Blog
+            </div>
+            <div id="links">
+
+            </div>
         </div>
     )
 }
