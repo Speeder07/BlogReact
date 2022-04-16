@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -7,7 +7,28 @@ import { RegisterMenager } from './RegisterMenager/RegisterMenager';
 import { WriterMenager } from './WriterMenager/WriterMenager';
 
 
+import {db} from './firebase-config';
+import { collection, getDocs } from 'firebase/firestore';
+
 const CurrentPage = ()=>{
+  const [users, setUsers]= useState([]);
+  const [posts, setPosts]= useState([]);
+  const usersReference = collection(db, "users");
+  const postsReference = collection(db, "posts");
+  useEffect(()=>{
+    const getUsers = async ()=>{
+      const data = await getDocs(usersReference);
+      setUsers(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
+    }
+
+    const getPosts = async ()=>{
+      const data = await getDocs(postsReference);
+      setPosts(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
+    }
+
+    getUsers();
+    getPosts();
+  },[])
 
   return(
     <IndexMenager/>
